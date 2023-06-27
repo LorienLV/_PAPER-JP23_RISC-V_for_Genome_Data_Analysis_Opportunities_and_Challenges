@@ -7,6 +7,7 @@ GenArchBench is a Genomics benchmark suite targeting the Arm architecture. It co
 GenArchBench includes three inputs for each kernel, one tiny with a target execution time of a less than a second, one small with a target execution time of less than a minute, and one large with a target execution time of a couple of minutes. Additionally, we include the expected output for each benchmark and input. To download the dataset (~90 GB):
 
 ```
+# Small and large inputs
 mkdir genarch-temp
 cd genarch-temp
 wget https://b2drop.bsc.es/index.php/s/Nyg7TXDRpkL5zTn/download
@@ -16,6 +17,12 @@ cat inputs*/genarch-inputs.tar.gz* > genarch-inputs-merged.bz
 rm -r inputs*
 tar -xvjf genarch-inputs-merged.bz
 mv genarch-inputs ../
+
+# Tiny inputs
+wget https://b2drop.bsc.es/index.php/s/AGZCz5XLqEz5sef/download
+unzip download
+rm -r download
+tar -xf inputs_tiny/inputs_tiny.tar.gz -C ../genarch-inputs
 cd ..
 rm -rf genarch-temp
 ```
