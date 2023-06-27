@@ -1,0 +1,5 @@
+/msa_spoa_omp*
+
+# Ignore regression test stage folders.
+POA-REGRESSION-*
+POA-DETAILED-*

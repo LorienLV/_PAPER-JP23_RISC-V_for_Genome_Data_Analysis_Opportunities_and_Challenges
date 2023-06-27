@@ -1,0 +1,7 @@
+#!/bin/bash
+
+export GENARCH_BENCH_INPUTS_ROOT="PATH_TO_GENARCHBENCH_INPUTS"
+
+export GENARCH_BENCH_CLUSTER="local"
+
+

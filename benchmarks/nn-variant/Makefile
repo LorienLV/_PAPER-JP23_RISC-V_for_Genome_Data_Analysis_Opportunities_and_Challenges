@@ -1,0 +1,49 @@
+CC=gcc
+CXX=g++
+
+BIN_NAME=variantcaller_wrapper
+
+# Perf
+PERF_ANALYSIS=0
+
+# Intel VTune Profiler
+VTUNE_ANALYSIS=0
+
+ifeq ($(VTUNE_ANALYSIS),1)
+	INCLUDES+=$(VTUNE_INCLUDES)
+	LDFLAGS+=$(VTUNE_LDFLAGS)
+endif
+
+# Fujitsu Advanced Profiler
+FAPP_ANALYSIS=0
+
+# Dynamorio
+DYNAMORIO_ANALYSIS=0
+
+# PWR
+PWR=0
+
+ifeq ($(PWR),1)
+	INCLUDES+=$(PWR_INCLUDES)
+	LDFLAGS+=$(PWR_LDFLAGS)
+endif
+
+# RAPL_STOPWATCH
+RAPL_STOPWATCH=0
+
+ifeq ($(RAPL_STOPWATCH),1)
+	INCLUDES+=$(RAPL_STOPWATCH_INCLUDES)
+	LDFLAGS+=$(RAPL_STOPWATCH_LDFLAGS)
+endif
+
+CXXFLAGS=-pthread -std=c++11 -Wall -Wextra -O3 -DPERF_ANALYSIS=$(PERF_ANALYSIS) -DVTUNE_ANALYSIS=$(VTUNE_ANALYSIS) -DFAPP_ANALYSIS=$(FAPP_ANALYSIS) -DDYNAMORIO_ANALYSIS=$(DYNAMORIO_ANALYSIS) -DPWR=$(PWR) -DRAPL_STOPWATCH=$(RAPL_STOPWATCH)
+
+$(BIN_NAME): variantcaller_wrapper.cpp
+	$(CXX) $(INCLUDES) $(CXXFLAGS) variantcaller_wrapper.cpp $(LDFLAGS) -o $(BIN_NAME)
+
+.PHONY: all
+all: $(BIN_NAME)
+
+.PHONY: clean
+clean:
+	rm -rf $(BIN_NAME)

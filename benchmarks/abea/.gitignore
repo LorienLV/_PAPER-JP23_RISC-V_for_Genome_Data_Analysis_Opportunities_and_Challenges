@@ -1,0 +1,5 @@
+/f5c*
+
+# Ignore regression test stage folders.
+ABEA-REGRESSION-*
+ABEA-DETAILED-*

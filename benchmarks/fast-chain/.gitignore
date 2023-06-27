@@ -1,0 +1,5 @@
+/chain*
+
+# Ignore regression test stage folders.
+FAST-CHAIN-REGRESSION-*
+FAST-CHAIN-DETAILED-*
